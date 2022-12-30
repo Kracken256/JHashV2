@@ -22,10 +22,10 @@ void inline permute_box1(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
 }
 void inline permute_box3(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
 {
-    *x1 ^= ((*x1) ^ (*x2) ^ (*x3) ^ (*x4)) + 1;
-    *x2 ^= ((*x1) ^ (*x2) ^ (*x3) ^ (*x4)) + 1;
-    *x3 ^= ((*x1) ^ (*x2) ^ (*x3) ^ (*x4)) + 1;
-    *x4 ^= ((*x1) ^ (*x2) ^ (*x3) ^ (*x4)) + 1;
+    *x1 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
+    *x2 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
+    *x3 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
+    *x4 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
 }
 void inline permute_box2(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
 {
