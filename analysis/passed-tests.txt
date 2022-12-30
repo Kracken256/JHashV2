@@ -1,0 +1,10 @@
+diehard_birthdays
+diehard_operm5
+diehard_rank_32x32
+diehard_parking_lot
+diehard_2dsphere
+diehard_3dsphere
+diehard_squeeze
+diehard_sums
+rgb_kstest_test
+dab_filltree2

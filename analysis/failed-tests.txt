@@ -1,0 +1,13 @@
+diehard_rank_6x8
+diehard_bitstream
+diehard_opso
+diehard_oqso
+diehard_dna
+diehard_count_1s_str
+diehard_count_1s_byt
+sts_monobit
+sts_runs
+dab_bytedistrib
+dab_dct
+dab_filltree2
+dab_monobit2
