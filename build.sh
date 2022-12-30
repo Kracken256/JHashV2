@@ -1,3 +1,4 @@
 #!/bin/bash
 
-g++ xorhash.cpp -o xorhash -O3 -Wall
+g++ jhashv2.cpp -o jhashv2 -O3 -Wall
+strip jhashv2
