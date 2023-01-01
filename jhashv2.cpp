@@ -13,33 +13,36 @@ std::string hexify(T i)
 
     return buf.str().c_str();
 }
+
 void inline permute_box1(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
 {
-    *x4 *= (((*x1) << 32) ^ ((*x4) >> 32)) * (*x1) + 1;
-    *x3 *= (((*x2) << 48) ^ ((*x3) >> 16)) * (*x2) + 1;
-    *x2 *= (((*x3) << 32) ^ ((*x2) >> 32)) * (*x3) + 1;
-    *x1 *= (((*x4) << 16) ^ ((*x1) >> 48)) * (*x4) + 1;
-}
-void inline permute_box3(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
-{
-    *x1 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
-    *x2 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
-    *x3 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
-    *x4 ^= ((*x1) * (*x2) * (*x3) * (*x4)) + 1;
+    *x4 ^= (((*x1) << 32) ^ ((*x4) >> 32)) * (*x1) + 1;
+    *x3 ^= (((*x2) << 48) ^ ((*x3) >> 16)) * (*x2) + 1;
+    *x2 ^= (((*x3) << 32) ^ ((*x2) >> 32)) * (*x3) + 1;
+    *x1 ^= (((*x4) << 16) ^ ((*x1) >> 48)) * (*x4) + 1;
 }
 void inline permute_box2(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
 {
-    *x4 *= (((*x1) << 32) ^ ((*x4) >> 32)) + 1;
-    *x3 *= (((*x2) << 32) ^ ((*x3) >> 32)) + 1;
-    *x2 *= (((*x3) << 32) ^ ((*x2) >> 32)) + 1;
-    *x1 *= (((*x4) << 32) ^ ((*x1) >> 32)) + 1;
+    *x4 ^= (((*x1) << 32) ^ ((*x4) >> 32)) + 1;
+    *x3 ^= (((*x2) << 32) ^ ((*x3) >> 32)) + 1;
+    *x2 ^= (((*x3) << 32) ^ ((*x2) >> 32)) + 1;
+    *x1 ^= (((*x4) << 32) ^ ((*x1) >> 32)) + 1;
 }
+void inline permute_box3(uint64_t *x1, uint64_t *x2, uint64_t *x3, uint64_t *x4)
+{
+    *x1 ^= ((*x1) * (*x2) ^ (*x3) * (*x4)) + 1;
+    *x2 ^= ((*x1) * (*x2) ^ (*x3) * (*x4)) + 1;
+    *x3 ^= ((*x1) * (*x2) ^ (*x3) * (*x4)) + 1;
+    *x4 ^= ((*x1) * (*x2) ^ (*x3) * (*x4)) + 1;
+}
+
+
 int main(int argc, char *argv[])
 {
-    uint64_t state_1 = 0xa7af31539e9190e7;
-    uint64_t state_2 = 0xa293a5cc7f4400c8;
-    uint64_t state_3 = 0x26458d663397c103;
-    uint64_t state_4 = 0x99745a5c13c1216d;
+    uint64_t state_1 = 0;
+    uint64_t state_2 = 0;
+    uint64_t state_3 = 0;
+    uint64_t state_4 = 0;
     FILE *file = freopen(NULL, "rb", stdin);
     size_t bytesRead = 0;
     char buffer[32];
